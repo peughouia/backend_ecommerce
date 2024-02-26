@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>La boutique de Fred</title>
+</head>
+<body>
+<a href="{% url 'index' %}">
+    <h1> la boutique de peughouia </h1>
+</a>
+     {% if user.is_authenticated %}
+        {{ user.username }}
+         <a href="{% url 'deconnexion'%}"> deconnexion</a>
+     {% else %}
+        <a href="{% url 'connexion'%}"> Connexion</a>
+        <a href="{% url 'inscription'%}"> S'inscrire</a>
+     {% endif %}
+
+    {% if user.cart %}
+        <p><a href="{% url 'cart' %}">Voir le panier ({{ user.cart.orders.count }} article(s)) </a></p>
+    {% endif %}
+
+
+
+    {% block content %}
+    {% endblock %}
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!--ce bout de code la permet d'entendre la page html de base -->
+{% extends 'base.html' %}
+
+<!--ce bout de code la permet de representer cette partir la
+ dans la page html de base
+ ce qu'on ecrit la va allez la-bas et bien s'agencer-->
+{% block content %}
+
+    <h2>{{ product.name }}</h2>
+    <h3>{{ product.price }}€</h3>
+    <img
+            src="{{ product.image_prod.url }}"
+            alt="img {{product.name}}"
+            style="max-width: 250px">
+    <p>{{ product.description }}</p>
+    <p>{{ product.stock }} en stock</p>
+
+    {% if user.is_authenticated %}
+    <p>
+        <a href="{% url 'add_to_cart' product.slug %}">
+            Ajouter au panier
+        </a>
+    </p>
+    {% endif %}
+
+
+{% endblock %}

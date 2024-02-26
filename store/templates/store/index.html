@@ -1,0 +1,20 @@
+<!--ce bout de code la permet d'entendre la page html de base -->
+{% extends 'base.html' %}
+
+<!--ce bout de code la permet de representer cette partir la
+ dans la page html de base
+ ce qu'on ecrit la va allez la-bas et bien s'agencer-->
+{% block content %}
+    
+    {% for product in products %}
+        <h2>{{product.name}}</h2>
+        <img
+            src="{{product.image_prod.url}}"
+            alt="img {{product.name}}"
+            style="max-width: 250px">
+            <!-- ou on peut mettre la fonction get_absolute_url
+            qui reference deja le slug de l'article-->
+        <a href="{% url 'product' product.slug %}">Voir l'article</a>
+    {% endfor %}
+
+{% endblock %}
